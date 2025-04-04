@@ -27,22 +27,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Header scroll behavior
     let lastScrollTop = 0;
-    const scrollThreshold = 50;
     
     window.addEventListener('scroll', function() {
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Se rolou mais que o threshold
-        if (Math.abs(lastScrollTop - currentScroll) > scrollThreshold) {
-            // Rolando para baixo e não está no topo
-            if (currentScroll > lastScrollTop && currentScroll > 150) {
-                header.classList.add('hidden');
-            } 
-            // Rolando para cima
-            else {
-                header.classList.remove('hidden');
-            }
-            lastScrollTop = currentScroll;
+        // Esconde o header em qualquer posição de scroll, exceto no topo
+        if (currentScroll > 10) {
+            header.classList.add('hidden');
+        } else {
+            header.classList.remove('hidden');
         }
         
         // Efeito adicional quando rola para baixo

@@ -222,6 +222,10 @@ section {
 .logo {
     display: flex;
     align-items: center;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .logo-container {
@@ -824,15 +828,6 @@ select:focus {
         grid-template-columns: 1fr;
     }
     
-    .nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .nav ul li {
-        margin: 0 0.5rem 0.5rem;
-    }
-    
     .checkbox-container {
         grid-template-columns: 1fr;
     }
@@ -875,44 +870,73 @@ select:focus {
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
     
+    /* Ajustes no menu mobile */
     .mobile-menu-toggle {
         display: flex;
+        margin-left: 1.5rem; 
+        order: -1;
+    }
+    
+    .header .container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+    
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
     }
     
     .nav {
         position: fixed;
         top: 0;
-        right: -100%;
+        left: -100%;
         width: 80%;
         max-width: 300px;
         height: 100vh;
         background-color: var(--white);
         flex-direction: column;
         padding: 80px 2rem 2rem;
-        transition: right 0.3s ease;
+        transition: left 0.3s ease;
         z-index: 100;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
     }
     
     .mobile-menu-open .nav {
-        right: 0;
+        left: 0;
     }
     
     .nav ul {
+        margin-left: 1rem;
         flex-direction: column;
         align-items: flex-start;
+        width: 100%;
     }
     
     .nav li {
-        margin: 1rem 0;
+        margin: 0.75rem 0;
         width: 100%;
         text-align: left;
     }
     
+    .nav ul li a {
+        display: block;
+        padding: 0.5rem 0;
+        font-size: 1.1rem;
+        color: var(--dark-color);
+    }
+    
+    .nav ul li a:after {
+        display: none;
+    }
+    
     .btn-primary {
-        width: 100%;
-        text-align: center;
-        margin-top: 1rem;
+        display: none;
     }
 }
 
