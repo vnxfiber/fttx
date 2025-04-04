@@ -27,10 +27,9 @@
                 <ul>
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#oportunidades">Oportunidades</a></li>
-                    <li><a href="#cadastro">Cadastro</a></li>
                 </ul>
             </nav>
-            <a href="#cadastro" class="btn btn-primary" id="botaoCadastro" onclick="scrollToCadastro(event)">Cadastrar-se agora</a>
+            <a href="#cadastro" class="btn btn-primary" id="botaoCadastro" onclick="document.getElementById('cadastro').scrollIntoView({behavior: 'smooth', block: 'start'}); return false;">Cadastrar-se agora</a>
         </div>
     </header>
     <div class="mobile-overlay" id="mobileOverlay"></div>
