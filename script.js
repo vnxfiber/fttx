@@ -1,9 +1,81 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Elementos globais
+    const junteSeButton = document.getElementById('botaoJuntese');
+    const header = document.querySelector('.header');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const body = document.body;
+    const cadastroSection = document.getElementById('cadastro');
+    
+    // Menu mobile toggle
+    if (mobileMenuToggle && mobileOverlay) {
+        mobileMenuToggle.addEventListener('click', function() {
+            body.classList.toggle('mobile-menu-open');
+        });
+        
+        mobileOverlay.addEventListener('click', function() {
+            body.classList.remove('mobile-menu-open');
+        });
+        
+        // Fechar menu ao clicar em links
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                body.classList.remove('mobile-menu-open');
+            });
+        });
+    }
+    
+    // Header scroll behavior
+    let lastScrollTop = 0;
+    const scrollThreshold = 50;
+    
+    window.addEventListener('scroll', function() {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Se rolou mais que o threshold
+        if (Math.abs(lastScrollTop - currentScroll) > scrollThreshold) {
+            // Rolando para baixo e não está no topo
+            if (currentScroll > lastScrollTop && currentScroll > 150) {
+                header.classList.add('hidden');
+            } 
+            // Rolando para cima
+            else {
+                header.classList.remove('hidden');
+            }
+            lastScrollTop = currentScroll;
+        }
+        
+        // Efeito adicional quando rola para baixo
+        if (window.scrollY > 50) {
+            header.classList.add('header-scrolled');
+        } else {
+            header.classList.remove('header-scrolled');
+        }
+    });
+
+    // Código específico para o botão "Junte-se a nós" do banner principal
+    if (junteSeButton) {
+        junteSeButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (cadastroSection) {
+                const headerHeight = header.offsetHeight;
+                const offsetPosition = cadastroSection.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
+
     // Rolagem suave para links de âncora
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
+            // Não processa se já tem onclick definido
+            if (this.hasAttribute('onclick')) return;
+            
             e.preventDefault();
-            console.log("Link clicado:", this.getAttribute('href'));
             
             // Se o link é para o topo (#)
             if(this.getAttribute('href') === '#') {
@@ -11,59 +83,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     top: 0,
                     behavior: 'smooth'
                 });
-                console.log("Rolando para o topo");
             } else {
                 // Para outros links âncora
                 const targetId = this.getAttribute('href');
-                console.log("ID alvo:", targetId);
                 const targetElement = document.querySelector(targetId);
-                console.log("Elemento alvo encontrado:", targetElement);
                 
                 if(targetElement) {
                     // Ajustar o offset para garantir que o menu não sobreponha o conteúdo
-                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const headerHeight = header.offsetHeight;
                     const offsetPosition = targetElement.offsetTop - headerHeight;
                     
-                    console.log("Posição de rolagem:", offsetPosition);
                     window.scrollTo({
                         top: offsetPosition,
                         behavior: 'smooth'
                     });
-                } else {
-                    console.log("Elemento alvo não encontrado!");
                 }
             }
         });
     });
 
-    // Animação do menu fixo
-    const header = document.querySelector('.header');
-    
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            header.classList.add('header-scrolled');
-        } else {
-            header.classList.remove('header-scrolled');
-        }
-    });
-    
-    // Validação do formulário
-    const form = document.getElementById('register-form');
-    
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (validateForm()) {
-                // Simulação de envio do formulário
-                showSubmitMessage();
-                
-                // Aqui você adicionaria o código para enviar os dados para um servidor
-                // Por exemplo, usando fetch API ou FormData
-            }
-        });
-    }
-    
     // Animação ao rolar para seções
     const sections = document.querySelectorAll('section');
     
@@ -86,48 +124,45 @@ document.addEventListener('DOMContentLoaded', function() {
         fadeInObserver.observe(section);
     });
 
-    // Funcionalidade de upload de arquivo
+    // File upload handling
     const fileUpload = document.querySelector('.file-upload');
     const fileInput = document.getElementById('curriculo');
-    const uploadText = document.querySelector('.upload-text');
-    const uploadSubtext = document.querySelector('.upload-subtext');
-
-    if (fileUpload && fileInput) {
+    
+    if(fileUpload && fileInput) {
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             fileUpload.addEventListener(eventName, preventDefaults, false);
         });
-
+        
         function preventDefaults(e) {
             e.preventDefault();
             e.stopPropagation();
         }
-
+        
         ['dragenter', 'dragover'].forEach(eventName => {
             fileUpload.addEventListener(eventName, highlight, false);
         });
-
+        
         ['dragleave', 'drop'].forEach(eventName => {
             fileUpload.addEventListener(eventName, unhighlight, false);
         });
-
-        function highlight(e) {
+        
+        function highlight() {
             fileUpload.classList.add('highlight');
         }
-
-        function unhighlight(e) {
+        
+        function unhighlight() {
             fileUpload.classList.remove('highlight');
         }
-
+        
         fileUpload.addEventListener('drop', handleDrop, false);
-
+        fileInput.addEventListener('change', handleFiles, false);
+        
         function handleDrop(e) {
             const dt = e.dataTransfer;
             const files = dt.files;
             handleFiles({ target: { files } });
         }
-
-        fileInput.addEventListener('change', handleFiles, false);
-
+        
         function handleFiles(e) {
             const files = e.target.files;
             if (files.length) {
@@ -135,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 validateFile(file);
             }
         }
-
+        
         function validateFile(file) {
             // Tipos de arquivos permitidos
             const validTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
@@ -143,6 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const uploadContent = fileUpload.querySelector('.upload-content');
             const uploadIcon = fileUpload.querySelector('.upload-icon');
+            const uploadText = fileUpload.querySelector('.upload-text');
             
             // Verifica o tipo do arquivo
             if (!validTypes.includes(file.type)) {
@@ -165,62 +201,23 @@ document.addEventListener('DOMContentLoaded', function() {
             uploadText.textContent = file.name;
             uploadText.innerHTML += `<span class="file-size">(${formatFileSize(file.size)})</span>`;
         }
-
+        
         function formatFileSize(bytes) {
             if (bytes < 1024) return bytes + ' bytes';
             else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
             else return (bytes / 1048576).toFixed(1) + ' MB';
         }
     }
-
-    // Código específico para os botões de cadastro
-    const cadastroBtns = document.querySelectorAll('.btn-primary, .btn-highlight');
-    cadastroBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            if (this.getAttribute('href') === '#cadastro') {
-                e.preventDefault();
-                const cadastroSection = document.getElementById('cadastro');
-                console.log("Botão de cadastro clicado, elemento alvo:", cadastroSection);
-                
-                if (cadastroSection) {
-                    const headerHeight = document.querySelector('.header').offsetHeight;
-                    const offsetPosition = cadastroSection.offsetTop - headerHeight;
-                    
-                    console.log("Rolando para posição:", offsetPosition);
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    console.log("Seção de cadastro não encontrada!");
-                }
-            }
-        });
-    });
-
-    // Código específico para o botão "Junte-se a nós" do banner principal
-    const junteSeButton = document.getElementById('botaoJuntese');
-    if (junteSeButton) {
-        console.log("Botão Junte-se encontrado:", junteSeButton);
-        junteSeButton.addEventListener('click', function(e) {
+    
+    // Form submission handling
+    const form = document.getElementById('register-form');
+    if(form) {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
-            console.log("Botão Junte-se clicado");
-            const cadastroSection = document.getElementById('cadastro');
-            if (cadastroSection) {
-                console.log("Seção de cadastro encontrada");
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const offsetPosition = cadastroSection.offsetTop - headerHeight;
-                console.log("Rolando para posição:", offsetPosition);
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            } else {
-                console.log("ERRO: Seção de cadastro NÃO encontrada!");
-            }
+            // Aqui você pode adicionar o código para enviar o formulário
+            alert('Cadastro realizado com sucesso! Entraremos em contato em breve.');
+            form.reset();
         });
-    } else {
-        console.log("ERRO: Botão Junte-se NÃO encontrado!");
     }
 });
 
