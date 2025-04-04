@@ -222,10 +222,7 @@ section {
 .logo {
     display: flex;
     align-items: center;
-    margin: 0 auto;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
 }
 
 .logo-container {
@@ -890,6 +887,7 @@ select:focus {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+        margin: 0;
     }
     
     .nav {
