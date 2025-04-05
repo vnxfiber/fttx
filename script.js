@@ -315,6 +315,30 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 500); // Pequeno atraso para garantir que a página carregou completamente
         }
     }
+
+    // Cookie Consent Popup
+    const cookieConsent = localStorage.getItem('cookieConsent');
+    
+    // Se não houver consentimento armazenado, mostra o popup
+    if (!cookieConsent) {
+        const cookiePopup = document.getElementById('cookieConsentPopup');
+        setTimeout(function() {
+            cookiePopup.classList.add('show');
+        }, 1000); // Mostra após 1 segundo
+        
+        // Botão aceitar
+        document.getElementById('cookieAccept').addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            cookiePopup.classList.remove('show');
+            // Aqui você pode inicializar o Google Analytics ou outros scripts de rastreamento
+        });
+        
+        // Botão rejeitar
+        document.getElementById('cookieReject').addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'rejected');
+            cookiePopup.classList.remove('show');
+        });
+    }
 });
 
 // Função para validar o formulário
