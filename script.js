@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Elementos globais
     const junteSeButton = document.getElementById('botaoJuntese');
     const header = document.querySelector('.header');
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const mobileOverlay = document.getElementById('mobileOverlay');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle') || document.querySelector('.mobile-menu-toggle');
+    const mobileOverlay = document.getElementById('mobileOverlay') || document.querySelector('.mobile-overlay');
     const body = document.body;
     const cadastroSection = document.getElementById('cadastro');
     
@@ -25,26 +25,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Header scroll behavior
-    let lastScrollTop = 0;
+    // Verifica se estamos em uma página externa (política de privacidade ou termos de uso)
+    const isPolicyPage = window.location.pathname.includes('privacy-policy.html') || 
+                         window.location.pathname.includes('terms-of-use.html');
     
-    window.addEventListener('scroll', function() {
-        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Esconde o header em qualquer posição de scroll, exceto no topo
-        if (currentScroll > 10) {
-            header.classList.add('hidden');
-        } else {
-            header.classList.remove('hidden');
-        }
-        
-        // Efeito adicional quando rola para baixo
-        if (window.scrollY > 50) {
-            header.classList.add('header-scrolled');
-        } else {
-            header.classList.remove('header-scrolled');
-        }
-    });
+    // Se estamos em uma página de política, garantimos que o cabeçalho seja sempre visível
+    if (isPolicyPage) {
+        header.classList.remove('hidden');
+        // Aqui adicionamos uma classe para evitar transições nas páginas de política
+        header.classList.add('policy-page-header');
+    } else {
+        // Header scroll behavior - apenas na página inicial
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Esconde o header em qualquer posição de scroll, exceto no topo
+            if (currentScroll > 10) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            
+            // Efeito adicional quando rola para baixo
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+    }
 
     // Código específico para o botão "Junte-se a nós" do banner principal
     if (junteSeButton) {
@@ -211,6 +220,22 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Cadastro realizado com sucesso! Entraremos em contato em breve.');
             form.reset();
         });
+    }
+
+    // Verificar se deve rolar para seção de cadastro ao retornar das páginas externas
+    if (localStorage.getItem('scrollToCadastro') === 'true') {
+        localStorage.removeItem('scrollToCadastro');
+        const cadastroSection = document.getElementById('cadastro');
+        if (cadastroSection) {
+            setTimeout(function() {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const offsetPosition = cadastroSection.offsetTop - headerHeight;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }, 500); // Pequeno atraso para garantir que a página carregou completamente
+        }
     }
 });
 

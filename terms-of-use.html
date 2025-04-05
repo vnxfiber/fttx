@@ -6,9 +6,29 @@
     <title>Termos de Uso - VNX FIBER</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos específicos para corrigir problemas de exibição */
+        body {
+            padding-top: 80px;
+            overflow-x: hidden;
+        }
+        
+        main {
+            margin-top: 40px !important;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            main {
+                margin-top: 20px !important;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="header">
+    <header class="header policy-page-header">
         <div class="container">
             <div class="mobile-menu-toggle">
                 <span></span>
@@ -28,13 +48,13 @@
                     <li><a href="index.html#sobre">Sobre</a></li>
                     <li><a href="index.html#oportunidades">Oportunidades</a></li>
                 </ul>
-                <a href="index.html#cadastro" class="btn btn-primary">Cadastrar-se agora</a>
+                <a href="index.html#cadastro" class="btn btn-primary" onclick="localStorage.setItem('scrollToCadastro', 'true');">Cadastrar-se agora</a>
             </nav>
-            <div class="mobile-overlay"></div>
         </div>
+        <div class="mobile-overlay"></div>
     </header>
 
-    <main style="margin-top: 120px;">
+    <main>
         <section class="container">
             <div class="policy-content">
                 <h1>Termos de Uso</h1>
@@ -145,5 +165,38 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Script adicional para resolver problemas específicos da página de termos
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('.header');
+            if (header) {
+                // Garante que o cabeçalho está visível
+                header.classList.remove('hidden');
+                header.classList.add('policy-page-header');
+            }
+            
+            // Ajusta o comportamento do menu mobile
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileOverlay = document.querySelector('.mobile-overlay');
+            const body = document.body;
+            
+            if (mobileMenuToggle && mobileOverlay) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    body.classList.toggle('mobile-menu-open');
+                });
+                
+                mobileOverlay.addEventListener('click', function() {
+                    body.classList.remove('mobile-menu-open');
+                });
+                
+                // Fechar menu ao clicar em links
+                document.querySelectorAll('.nav a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        body.classList.remove('mobile-menu-open');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html> 

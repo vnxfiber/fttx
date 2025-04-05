@@ -195,6 +195,16 @@ section {
     transition: all 0.3s ease;
 }
 
+/* Classe específica para o cabeçalho em páginas de política e termos */
+.policy-page-header {
+    transform: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: fixed !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
 .header.hidden {
     transform: translateY(-100%);
 }
@@ -1017,8 +1027,19 @@ select:focus {
         display: none;
     }
     
+    /* Modificação para mostrar o botão no menu mobile */
     .btn-primary {
-        display: none;
+        display: inline-block;
+        width: 100%;
+        margin-top: 1rem;
+        text-align: center;
+    }
+    
+    /* Botão específico para páginas de política e termos */
+    .nav .btn-primary {
+        display: inline-block;
+        width: 100%;
+        margin-top: 1.5rem;
     }
 }
 
@@ -1299,9 +1320,22 @@ select:focus {
 @media (max-width: 768px) {
     .policy-content {
         padding: 1.5rem 1rem;
+        margin-top: 0;
     }
     
     .policy-section h2 {
         font-size: 1.3rem;
+    }
+    
+    .policy-page-header .mobile-menu-toggle {
+        z-index: 1000;
+    }
+    
+    .policy-page-header .nav {
+        z-index: 999;
+    }
+    
+    .policy-page-header .mobile-overlay {
+        z-index: 998;
     }
 } 
