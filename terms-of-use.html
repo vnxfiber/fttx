@@ -7,43 +7,73 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos específicos para corrigir problemas de exibição */
+        /* Estilos especificos para corrigir problemas de exibicao */
         body {
             padding-top: 80px;
             overflow-x: hidden;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transition: none !important;
+            animation: none !important;
         }
         
         main {
             margin-top: 40px !important;
             opacity: 1 !important;
             visibility: visible !important;
+            transition: none !important;
+            animation: none !important;
         }
         
-        /* Mobile overlay específico para esta página */
+        /* Mobile overlay especifico para esta pagina */
         .mobile-overlay {
             display: none;
-            transition: opacity 0.1s linear !important;
+            transition: none !important;
+            animation: none !important;
         }
         
         body.mobile-menu-open .mobile-overlay {
             display: block !important;
             opacity: 1 !important;
             visibility: visible !important;
+            transition: none !important;
+            animation: none !important;
         }
         
         @media (max-width: 768px) {
             body {
                 padding-top: 70px;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transition: none !important;
+                animation: none !important;
             }
+            
             main {
                 margin-top: 20px !important;
                 display: block !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transition: none !important;
+                animation: none !important;
             }
+            
             .policy-content {
                 opacity: 1 !important;
                 visibility: visible !important;
+                transition: none !important;
+                animation: none !important;
             }
-            /* Estilo específico para o overlay no mobile */
+            
+            section, div, p, h1, h2, h3 {
+                opacity: 1 !important;
+                visibility: visible !important;
+                transition: none !important;
+                animation: none !important;
+                transform: none !important;
+            }
+            
+            /* Estilo especifico para o overlay no mobile */
             .mobile-overlay {
                 top: 0 !important;
                 left: 0 !important;
@@ -51,6 +81,8 @@
                 width: 100% !important;
                 height: 100% !important;
                 z-index: 99 !important;
+                transition: none !important;
+                animation: none !important;
             }
         }
     </style>
@@ -58,7 +90,7 @@
 <body>
     <header class="header policy-page-header">
         <div class="container">
-            <div class="mobile-menu-toggle">
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -75,89 +107,90 @@
                 <ul>
                     <li><a href="index.html#sobre">Sobre</a></li>
                     <li><a href="index.html#oportunidades">Oportunidades</a></li>
+                    <li><a href="privacy-policy.html">Politica de Privacidade</a></li>
                 </ul>
                 <a href="index.html#cadastro" class="btn btn-primary" onclick="localStorage.setItem('scrollToCadastro', 'true');">Cadastrar-se agora</a>
             </nav>
         </div>
-        <div class="mobile-overlay"></div>
+        <div class="mobile-overlay" id="mobileOverlay"></div>
     </header>
 
     <main>
         <section class="container">
             <div class="policy-content">
                 <h1>Termos de Uso</h1>
-                <p class="last-updated">Última atualização: Maio 2024</p>
+                <p class="last-updated">Ultima atualizacao: Maio 2024</p>
 
                 <div class="policy-section">
-                    <h2>1. Aceitação dos Termos</h2>
-                    <p>Bem-vindo ao site da VNX FIBER TELECOM. Ao acessar e utilizar este site, você concorda em cumprir e ficar vinculado aos seguintes termos e condições de uso. Se você não concordar com qualquer parte destes termos, por favor, não utilize nosso site.</p>
+                    <h2>1. Aceitacao dos Termos</h2>
+                    <p>Bem-vindo ao site da VNX FIBER TELECOM. Ao acessar e utilizar este site, voce concorda em cumprir e ficar vinculado aos seguintes termos e condicoes de uso. Se voce nao concordar com qualquer parte destes termos, por favor, nao utilize nosso site.</p>
                 </div>
 
                 <div class="policy-section">
-                    <h2>2. Modificações dos Termos</h2>
-                    <p>A VNX FIBER TELECOM reserva-se o direito de modificar estes termos a qualquer momento, sem aviso prévio. As alterações entrarão em vigor imediatamente após sua publicação no site. Ao continuar a usar o site após a publicação de quaisquer alterações, você aceita e concorda com os termos modificados.</p>
+                    <h2>2. Modificacoes dos Termos</h2>
+                    <p>A VNX FIBER TELECOM reserva-se o direito de modificar estes termos a qualquer momento, sem aviso previo. As alteracoes entrarao em vigor imediatamente apos sua publicacao no site. Ao continuar a usar o site apos a publicacao de quaisquer alteracoes, voce aceita e concorda com os termos modificados.</p>
                 </div>
 
                 <div class="policy-section">
                     <h2>3. Uso do Site</h2>
-                    <p>Você concorda em utilizar este site apenas para fins legais e de acordo com estes termos. Especificamente, você concorda em não:</p>
+                    <p>Voce concorda em utilizar este site apenas para fins legais e de acordo com estes termos. Especificamente, voce concorda em nao:</p>
                     <ul>
-                        <li>Utilizar o site de qualquer maneira que possa danificar, desabilitar, sobrecarregar ou comprometer a segurança do site;</li>
-                        <li>Utilizar qualquer robô, spider, ou outro dispositivo automático para acessar o site para qualquer finalidade;</li>
-                        <li>Tentar obter acesso não autorizado a qualquer parte do site, a outros sistemas ou redes conectadas ao site;</li>
-                        <li>Violar quaisquer leis aplicáveis ao utilizar o site;</li>
-                        <li>Coletar ou armazenar dados pessoais de outros usuários sem sua permissão.</li>
+                        <li>Utilizar o site de qualquer maneira que possa danificar, desabilitar, sobrecarregar ou comprometer a seguranca do site;</li>
+                        <li>Utilizar qualquer robo, spider, ou outro dispositivo automatico para acessar o site para qualquer finalidade;</li>
+                        <li>Tentar obter acesso nao autorizado a qualquer parte do site, a outros sistemas ou redes conectadas ao site;</li>
+                        <li>Violar quaisquer leis aplicaveis ao utilizar o site;</li>
+                        <li>Coletar ou armazenar dados pessoais de outros usuarios sem sua permissao.</li>
                     </ul>
                 </div>
 
                 <div class="policy-section">
-                    <h2>4. Cadastro e Segurança</h2>
-                    <p>Para utilizar certas funcionalidades do site, você pode precisar se cadastrar e fornecer informações pessoais. Você é responsável por manter a confidencialidade de suas informações de cadastro e por todas as atividades que ocorrerem em sua conta.</p>
-                    <p>Você concorda em:</p>
+                    <h2>4. Cadastro e Seguranca</h2>
+                    <p>Para utilizar certas funcionalidades do site, voce pode precisar se cadastrar e fornecer informacoes pessoais. Voce e responsavel por manter a confidencialidade de suas informacoes de cadastro e por todas as atividades que ocorrerem em sua conta.</p>
+                    <p>Voce concorda em:</p>
                     <ul>
-                        <li>Fornecer informações precisas, atualizadas e completas durante o processo de cadastro;</li>
-                        <li>Manter e atualizar prontamente suas informações de cadastro para mantê-las precisas, atualizadas e completas;</li>
-                        <li>Notificar a VNX FIBER TELECOM imediatamente sobre qualquer uso não autorizado de sua conta ou qualquer outra violação de segurança.</li>
+                        <li>Fornecer informacoes precisas, atualizadas e completas durante o processo de cadastro;</li>
+                        <li>Manter e atualizar prontamente suas informacoes de cadastro para mante-las precisas, atualizadas e completas;</li>
+                        <li>Notificar a VNX FIBER TELECOM imediatamente sobre qualquer uso nao autorizado de sua conta ou qualquer outra violacao de seguranca.</li>
                     </ul>
                 </div>
 
                 <div class="policy-section">
                     <h2>5. Propriedade Intelectual</h2>
-                    <p>Todo o conteúdo presente neste site, incluindo, mas não se limitando a, textos, gráficos, logotipos, ícones, imagens, clipes de áudio, downloads digitais, e compilações de dados, é propriedade da VNX FIBER TELECOM ou de seus fornecedores de conteúdo e é protegido por leis de direitos autorais nacionais e internacionais.</p>
-                    <p>Você não pode modificar, reproduzir, distribuir, exibir publicamente, executar publicamente, republicar, baixar, armazenar ou transmitir qualquer material do nosso site, exceto conforme expressamente permitido por escrito pela VNX FIBER TELECOM.</p>
+                    <p>Todo o conteudo presente neste site, incluindo, mas nao se limitando a, textos, graficos, logotipos, icones, imagens, clipes de audio, downloads digitais, e compilacoes de dados, e propriedade da VNX FIBER TELECOM ou de seus fornecedores de conteudo e e protegido por leis de direitos autorais nacionais e internacionais.</p>
+                    <p>Voce nao pode modificar, reproduzir, distribuir, exibir publicamente, executar publicamente, republicar, baixar, armazenar ou transmitir qualquer material do nosso site, exceto conforme expressamente permitido por escrito pela VNX FIBER TELECOM.</p>
                 </div>
 
                 <div class="policy-section">
                     <h2>6. Links para Outros Sites</h2>
-                    <p>Nosso site pode conter links para sites de terceiros. Esses links são fornecidos apenas para sua conveniência. A VNX FIBER TELECOM não tem controle sobre o conteúdo desses sites e não assume nenhuma responsabilidade por eles ou por qualquer perda ou dano que possa surgir do seu uso. A inclusão de links para outros sites não implica endosso do material contido nesses sites ou qualquer associação com seus operadores.</p>
+                    <p>Nosso site pode conter links para sites de terceiros. Esses links sao fornecidos apenas para sua conveniencia. A VNX FIBER TELECOM nao tem controle sobre o conteudo desses sites e nao assume nenhuma responsabilidade por eles ou por qualquer perda ou dano que possa surgir do seu uso. A inclusao de links para outros sites nao implica endosso do material contido nesses sites ou qualquer associacao com seus operadores.</p>
                 </div>
 
                 <div class="policy-section">
                     <h2>7. Envio de Candidaturas</h2>
-                    <p>Ao enviar sua candidatura através do nosso site, você:</p>
+                    <p>Ao enviar sua candidatura atraves do nosso site, voce:</p>
                     <ul>
-                        <li>Garante que todas as informações fornecidas são verdadeiras, precisas e completas;</li>
-                        <li>Concede à VNX FIBER TELECOM o direito de armazenar, processar e utilizar as informações fornecidas para fins de recrutamento e seleção;</li>
-                        <li>Autoriza a VNX FIBER TELECOM a compartilhar suas informações com parceiros relevantes para oportunidades de trabalho;</li>
-                        <li>Entende que o envio de uma candidatura não garante uma entrevista ou oferta de emprego.</li>
+                        <li>Garante que todas as informacoes fornecidas sao verdadeiras, precisas e completas;</li>
+                        <li>Concede a VNX FIBER TELECOM o direito de armazenar, processar e utilizar as informacoes fornecidas para fins de recrutamento e selecao;</li>
+                        <li>Autoriza a VNX FIBER TELECOM a compartilhar suas informacoes com parceiros relevantes para oportunidades de trabalho;</li>
+                        <li>Entende que o envio de uma candidatura nao garante uma entrevista ou oferta de emprego.</li>
                     </ul>
                 </div>
 
                 <div class="policy-section">
-                    <h2>8. Limitação de Responsabilidade</h2>
-                    <p>Em nenhuma circunstância a VNX FIBER TELECOM, seus diretores, funcionários ou agentes serão responsáveis por quaisquer danos diretos, indiretos, incidentais, especiais, punitivos ou consequentes decorrentes do uso ou incapacidade de uso deste site ou de qualquer conteúdo, serviços ou produtos obtidos através deste site.</p>
-                    <p>A VNX FIBER TELECOM não garante que o site estará disponível ininterruptamente, será seguro ou livre de erros, nem que quaisquer defeitos serão corrigidos.</p>
+                    <h2>8. Limitacao de Responsabilidade</h2>
+                    <p>Em nenhuma circunstancia a VNX FIBER TELECOM, seus diretores, funcionarios ou agentes serao responsaveis por quaisquer danos diretos, indiretos, incidentais, especiais, punitivos ou consequentes decorrentes do uso ou incapacidade de uso deste site ou de qualquer conteudo, servicos ou produtos obtidos atraves deste site.</p>
+                    <p>A VNX FIBER TELECOM nao garante que o site estara disponivel ininterruptamente, sera seguro ou livre de erros, nem que quaisquer defeitos serao corrigidos.</p>
                 </div>
 
                 <div class="policy-section">
-                    <h2>9. Lei Aplicável</h2>
-                    <p>Estes termos serão regidos e interpretados de acordo com as leis da República Federativa do Brasil, sem levar em consideração seus princípios de conflitos de leis.</p>
-                    <p>Qualquer ação legal relacionada a estes termos será submetida exclusivamente aos tribunais competentes da comarca de São Luís, Maranhão.</p>
+                    <h2>9. Lei Aplicavel</h2>
+                    <p>Estes termos serao regidos e interpretados de acordo com as leis da Republica Federativa do Brasil, sem levar em consideracao seus principios de conflitos de leis.</p>
+                    <p>Qualquer acao legal relacionada a estes termos sera submetida exclusivamente aos tribunais competentes da comarca de Sao Luis, Maranhao.</p>
                 </div>
 
                 <div class="policy-section">
                     <h2>10. Contato</h2>
-                    <p>Se você tiver dúvidas sobre estes Termos de Uso, entre em contato conosco pelo e-mail contato@vnxfiber.com.br ou pelo telefone (98) 99988-2215.</p>
+                    <p>Se voce tiver duvidas sobre estes Termos de Uso, entre em contato conosco pelo e-mail contato@vnxfiber.com.br ou pelo telefone (98) 99988-2215.</p>
                 </div>
             </div>
         </section>
@@ -177,109 +210,61 @@
                     </div>
                 </div>
                 <div class="footer-nav">
-                    <h3>Links Úteis</h3>
+                    <h3>Links Uteis</h3>
                     <ul>
                         <li><a href="index.html#sobre">Sobre</a></li>
                         <li><a href="index.html#oportunidades">Oportunidades</a></li>
                         <li><a href="index.html#cadastro">Cadastro</a></li>
+                        <li><a href="privacy-policy.html">Politica de Privacidade</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-legal">
                 <p>© 2024 VNX FIBER TELECOM. Todos os direitos reservados.</p>
-                <p><a href="privacy-policy.html">Política de Privacidade</a> | <a href="terms-of-use.html">Termos de Uso</a></p>
+                <p><a href="privacy-policy.html">Politica de Privacidade</a> | <a href="terms-of-use.html">Termos de Uso</a></p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
     <script>
-        // Script adicional para resolver problemas específicos da página de termos
+        // Script especifico para esta pagina
         document.addEventListener('DOMContentLoaded', function() {
-            // Força a visibilidade do conteúdo
-            document.body.style.opacity = '1';
-            document.body.style.visibility = 'visible';
+            // Força a visibilidade forçando direto no estilo
+            document.body.style.opacity = '1 !important';
+            document.body.style.visibility = 'visible !important';
             
-            // Garante que o conteúdo principal esteja sempre visível
-            const mainContent = document.querySelector('main');
-            if (mainContent) {
-                mainContent.style.opacity = '1';
-                mainContent.style.visibility = 'visible';
-                mainContent.style.display = 'block';
-            }
-            
-            // Garantir que o conteúdo da política esteja sempre visível
-            const policyContent = document.querySelector('.policy-content');
-            if (policyContent) {
-                policyContent.style.opacity = '1';
-                policyContent.style.visibility = 'visible';
-                policyContent.style.display = 'block';
-            }
-            
+            // Garante que o cabeçalho seja visível
             const header = document.querySelector('.header');
             if (header) {
-                // Garante que o cabeçalho está visível
                 header.classList.remove('hidden');
-                header.classList.add('policy-page-header');
-                
-                // Desativa o comportamento de scroll que esconde o cabeçalho
-                window.addEventListener('scroll', function() {
-                    header.classList.remove('hidden');
-                });
+                header.style.display = 'block';
+                header.style.visibility = 'visible';
+                header.style.opacity = '1';
             }
             
-            // Ajusta o comportamento do menu mobile
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const mobileOverlay = document.querySelector('.mobile-overlay');
-            const body = document.body;
-            
-            if (mobileMenuToggle && mobileOverlay) {
-                // Pré-inicializa o overlay para melhor desempenho
-                mobileOverlay.style.opacity = '0';
-                mobileOverlay.style.display = 'none';
-                
-                mobileMenuToggle.addEventListener('click', function() {
-                    body.classList.toggle('mobile-menu-open');
-                    
-                    // Força a exibição do overlay quando o menu é aberto
-                    if (body.classList.contains('mobile-menu-open')) {
-                        mobileOverlay.style.display = 'block';
-                        // Pequeno atraso para permitir que o display: block seja aplicado antes da opacidade
-                        setTimeout(function() {
-                            mobileOverlay.style.opacity = '1';
-                        }, 10);
-                    } else {
-                        mobileOverlay.style.opacity = '0';
-                        // Pequeno atraso antes de esconder o overlay
-                        setTimeout(function() {
-                            mobileOverlay.style.display = 'none';
-                        }, 300);
-                    }
-                });
-                
-                mobileOverlay.addEventListener('click', function() {
-                    body.classList.remove('mobile-menu-open');
-                    mobileOverlay.style.opacity = '0';
-                    
-                    // Pequeno atraso antes de esconder o overlay
-                    setTimeout(function() {
-                        mobileOverlay.style.display = 'none';
-                    }, 300);
-                });
-                
-                // Fechar menu ao clicar em links
-                document.querySelectorAll('.nav a').forEach(link => {
-                    link.addEventListener('click', function() {
-                        body.classList.remove('mobile-menu-open');
-                        mobileOverlay.style.opacity = '0';
-                        
-                        // Pequeno atraso antes de esconder o overlay
-                        setTimeout(function() {
-                            mobileOverlay.style.display = 'none';
-                        }, 300);
-                    });
-                });
+            // Garante que o conteúdo principal seja visível
+            const mainContent = document.querySelector('main');
+            if (mainContent) {
+                mainContent.style.display = 'block !important';
+                mainContent.style.visibility = 'visible !important';
+                mainContent.style.opacity = '1 !important';
             }
+            
+            // Força todos os elementos de conteúdo a serem visíveis
+            const policyContent = document.querySelector('.policy-content');
+            if (policyContent) {
+                policyContent.style.display = 'block';
+                policyContent.style.visibility = 'visible';
+                policyContent.style.opacity = '1';
+            }
+            
+            // Desativa qualquer comportamento de scroll que possa esconder o cabeçalho
+            window.addEventListener('scroll', function() {
+                if (header) header.classList.remove('hidden');
+            });
+            
+            console.log('Script específico da página de termos carregado');
         });
     </script>
 </body>

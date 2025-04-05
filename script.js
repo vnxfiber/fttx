@@ -11,29 +11,49 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mobileMenuToggle && mobileOverlay) {
         mobileMenuToggle.addEventListener('click', function() {
             body.classList.toggle('mobile-menu-open');
+            
+            // Impedir rolagem do body quando o menu está aberto
+            if (body.classList.contains('mobile-menu-open')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
+            }
         });
         
         mobileOverlay.addEventListener('click', function() {
             body.classList.remove('mobile-menu-open');
+            body.style.overflow = '';
         });
         
         // Fechar menu ao clicar em links
         document.querySelectorAll('.nav a').forEach(link => {
             link.addEventListener('click', function() {
                 body.classList.remove('mobile-menu-open');
+                body.style.overflow = '';
             });
         });
     }
     
     // Verifica se estamos em uma página externa (política de privacidade ou termos de uso)
-    const isPolicyPage = window.location.pathname.includes('privacy-policy.html') || 
-                          window.location.pathname.includes('terms-of-use.html');
+    const pathname = window.location.pathname;
+    const currentPage = pathname.split('/').pop(); // Obtém apenas o nome do arquivo
+    
+    const isPolicyPage = 
+        pathname.includes('privacy-policy.html') || 
+        pathname.includes('terms-of-use.html') || 
+        currentPage === 'privacy-policy.html' ||
+        currentPage === 'terms-of-use.html';
+    
+    console.log("Current Page:", currentPage);
+    console.log("Is Policy Page:", isPolicyPage);
     
     // Se estamos em uma página de política, garantimos que o cabeçalho seja sempre visível
     if (isPolicyPage) {
         // Aplicar estilos imediatamente para evitar problemas de exibição
         document.body.style.opacity = '1';
         document.body.style.visibility = 'visible';
+        document.body.style.transition = 'none';
+        document.body.style.animation = 'none';
         
         // Garante que o conteúdo principal esteja sempre visível
         const mainContent = document.querySelector('main');
@@ -41,23 +61,57 @@ document.addEventListener('DOMContentLoaded', function() {
             mainContent.style.opacity = '1';
             mainContent.style.visibility = 'visible';
             mainContent.style.display = 'block';
+            mainContent.style.transition = 'none';
+            mainContent.style.animation = 'none';
         }
         
         // Garantir que o cabeçalho esteja sempre visível
         header.classList.remove('hidden');
         header.classList.add('policy-page-header');
+        header.style.animation = 'none';
+        header.style.transition = 'none';
         
         // Garantir que o conteúdo da política esteja sempre visível
         const policyContent = document.querySelector('.policy-content');
         if (policyContent) {
             policyContent.style.opacity = '1';
             policyContent.style.visibility = 'visible';
+            policyContent.style.transition = 'none';
+            policyContent.style.animation = 'none';
         }
         
-        // Desativar qualquer comportamento de scroll que possa esconder o conteúdo
-        window.addEventListener('scroll', function() {
-            header.classList.remove('hidden');
-        });
+        // Remover comportamento de scroll em páginas externas, especialmente em mobile
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+            // Evitar qualquer efeito de scroll, mantendo o header fixo e visível sempre
+            window.addEventListener('scroll', function(e) {
+                header.classList.remove('hidden');
+                header.classList.remove('header-scrolled');
+            });
+            
+            // Remover quaisquer efeitos de fade ou animação em elementos no mobile
+            document.querySelectorAll('section, div, p, h1, h2, h3, .policy-section').forEach(elem => {
+                elem.style.opacity = '1';
+                elem.style.visibility = 'visible';
+                elem.style.transition = 'none';
+                elem.style.animation = 'none';
+                elem.style.transform = 'none';
+                
+                // Remover classes que possam ter efeitos de fade
+                elem.classList.remove('section-hidden');
+                elem.classList.remove('fade-in');
+            });
+            
+            // Desativa todos os observadores de interseção para evitar animações
+            if (window.fadeInObserver) {
+                window.fadeInObserver.disconnect();
+            }
+        } else {
+            // Para desktop, apenas garantir que o header permaneça visível
+            window.addEventListener('scroll', function() {
+                header.classList.remove('hidden');
+            });
+        }
     } else {
         // Header scroll behavior - apenas na página inicial
         window.addEventListener('scroll', function() {

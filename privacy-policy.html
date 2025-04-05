@@ -1,49 +1,79 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidade - VNX FIBER</title>
+    <title>Politica de Privacidade - VNX FIBER</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos específicos para corrigir problemas de exibição */
+        /* Estilos especificos para corrigir problemas de exibicao */
         body {
             padding-top: 80px;
             overflow-x: hidden;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transition: none !important;
+            animation: none !important;
         }
         
         main {
             margin-top: 40px !important;
             opacity: 1 !important;
             visibility: visible !important;
+            transition: none !important;
+            animation: none !important;
         }
         
-        /* Mobile overlay específico para esta página */
+        /* Mobile overlay especifico para esta pagina */
         .mobile-overlay {
             display: none;
-            transition: opacity 0.1s linear !important;
+            transition: none !important;
+            animation: none !important;
         }
         
         body.mobile-menu-open .mobile-overlay {
             display: block !important;
             opacity: 1 !important;
             visibility: visible !important;
+            transition: none !important;
+            animation: none !important;
         }
         
         @media (max-width: 768px) {
             body {
                 padding-top: 70px;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transition: none !important;
+                animation: none !important;
             }
+            
             main {
                 margin-top: 20px !important;
                 display: block !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transition: none !important;
+                animation: none !important;
             }
+            
             .policy-content {
                 opacity: 1 !important;
                 visibility: visible !important;
+                transition: none !important;
+                animation: none !important;
             }
-            /* Estilo específico para o overlay no mobile */
+            
+            section, div, p, h1, h2, h3 {
+                opacity: 1 !important;
+                visibility: visible !important;
+                transition: none !important;
+                animation: none !important;
+                transform: none !important;
+            }
+            
+            /* Estilo especifico para o overlay no mobile */
             .mobile-overlay {
                 top: 0 !important;
                 left: 0 !important;
@@ -51,6 +81,8 @@
                 width: 100% !important;
                 height: 100% !important;
                 z-index: 99 !important;
+                transition: none !important;
+                animation: none !important;
             }
         }
     </style>
@@ -58,7 +90,7 @@
 <body>
     <header class="header policy-page-header">
         <div class="container">
-            <div class="mobile-menu-toggle">
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -75,92 +107,93 @@
                 <ul>
                     <li><a href="index.html#sobre">Sobre</a></li>
                     <li><a href="index.html#oportunidades">Oportunidades</a></li>
+                    <li><a href="terms-of-use.html">Termos de Uso</a></li>
                 </ul>
                 <a href="index.html#cadastro" class="btn btn-primary" onclick="localStorage.setItem('scrollToCadastro', 'true');">Cadastrar-se agora</a>
             </nav>
         </div>
-        <div class="mobile-overlay"></div>
+        <div class="mobile-overlay" id="mobileOverlay"></div>
     </header>
 
     <main>
         <section class="container">
             <div class="policy-content">
-                <h1>Política de Privacidade</h1>
-                <p class="last-updated">Última atualização: Maio 2024</p>
+                <h1>Politica de Privacidade</h1>
+                <p class="last-updated">Ultima atualizacao: Maio 2024</p>
 
                 <div class="policy-section">
-                    <h2>1. Introdução</h2>
-                    <p>A VNX FIBER TELECOM valoriza a privacidade dos seus dados pessoais e está comprometida em proteger as informações que você compartilha conosco. Esta Política de Privacidade descreve como coletamos, usamos, compartilhamos e protegemos suas informações quando você utiliza nosso site e serviços.</p>
-                    <p>Ao acessar nosso site e utilizar nossos serviços, você concorda com os termos desta Política de Privacidade.</p>
+                    <h2>1. Introducao</h2>
+                    <p>A VNX FIBER TELECOM valoriza a privacidade dos seus dados pessoais e esta comprometida em proteger as informacoes que voce compartilha conosco. Esta Politica de Privacidade descreve como coletamos, usamos, compartilhamos e protegemos suas informacoes quando voce utiliza nosso site e servicos.</p>
+                    <p>Ao acessar nosso site e utilizar nossos servicos, voce concorda com os termos desta Politica de Privacidade.</p>
                 </div>
 
                 <div class="policy-section">
-                    <h2>2. Informações que Coletamos</h2>
-                    <p>Podemos coletar os seguintes tipos de informação:</p>
+                    <h2>2. Informacoes que Coletamos</h2>
+                    <p>Podemos coletar os seguintes tipos de informacao:</p>
                     <ul>
-                        <li><strong>Informações pessoais:</strong> Nome, endereço de e-mail, número de telefone, endereço residencial, informações profissionais e documentos pessoais quando você se cadastra em nossa plataforma.</li>
-                        <li><strong>Informações do dispositivo:</strong> Informações sobre o dispositivo que você usa para acessar nosso site, incluindo tipo de dispositivo, sistema operacional, navegador e endereço IP.</li>
-                        <li><strong>Dados de uso:</strong> Informações sobre como você interage com nosso site, incluindo páginas visitadas, tempo gasto e ações realizadas.</li>
-                        <li><strong>Currículos e arquivos enviados:</strong> Documentos profissionais e pessoais que você envia através do nosso formulário de cadastro.</li>
+                        <li><strong>Informacoes pessoais:</strong> Nome, endereco de e-mail, numero de telefone, endereco residencial, informacoes profissionais e documentos pessoais quando voce se cadastra em nossa plataforma.</li>
+                        <li><strong>Informacoes do dispositivo:</strong> Informacoes sobre o dispositivo que voce usa para acessar nosso site, incluindo tipo de dispositivo, sistema operacional, navegador e endereco IP.</li>
+                        <li><strong>Dados de uso:</strong> Informacoes sobre como voce interage com nosso site, incluindo paginas visitadas, tempo gasto e acoes realizadas.</li>
+                        <li><strong>Curriculos e arquivos enviados:</strong> Documentos profissionais e pessoais que voce envia atraves do nosso formulario de cadastro.</li>
                     </ul>
                 </div>
 
                 <div class="policy-section">
-                    <h2>3. Como Utilizamos suas Informações</h2>
-                    <p>Utilizamos suas informações para os seguintes fins:</p>
+                    <h2>3. Como Utilizamos suas Informacoes</h2>
+                    <p>Utilizamos suas informacoes para os seguintes fins:</p>
                     <ul>
                         <li>Processar seu cadastro e avaliar seu perfil para oportunidades de trabalho;</li>
-                        <li>Entrar em contato com você sobre oportunidades profissionais;</li>
-                        <li>Melhorar nossos serviços e desenvolver novos recursos;</li>
-                        <li>Entender como os usuários utilizam nosso site;</li>
-                        <li>Proteger a segurança e integridade do nosso site e serviços;</li>
-                        <li>Cumprir obrigações legais.</li>
+                        <li>Entrar em contato com voce sobre oportunidades profissionais;</li>
+                        <li>Melhorar nossos servicos e desenvolver novos recursos;</li>
+                        <li>Entender como os usuarios utilizam nosso site;</li>
+                        <li>Proteger a seguranca e integridade do nosso site e servicos;</li>
+                        <li>Cumprir obrigacoes legais.</li>
                     </ul>
                 </div>
 
                 <div class="policy-section">
-                    <h2>4. Compartilhamento de Informações</h2>
-                    <p>Podemos compartilhar suas informações com:</p>
+                    <h2>4. Compartilhamento de Informacoes</h2>
+                    <p>Podemos compartilhar suas informacoes com:</p>
                     <ul>
-                        <li><strong>Parceiros de negócios:</strong> Empresas e profissionais que colaboram conosco para fornecer serviços ou conteúdo;</li>
-                        <li><strong>Prestadores de serviços:</strong> Empresas que nos auxiliam na operação do site e prestação de serviços;</li>
+                        <li><strong>Parceiros de negocios:</strong> Empresas e profissionais que colaboram conosco para fornecer servicos ou conteudo;</li>
+                        <li><strong>Prestadores de servicos:</strong> Empresas que nos auxiliam na operacao do site e prestacao de servicos;</li>
                         <li><strong>Autoridades legais:</strong> Quando obrigados por lei ou para proteger nossos direitos;</li>
-                        <li><strong>Potenciais empregadores:</strong> Informações relevantes para oportunidades de trabalho, sempre com seu consentimento.</li>
+                        <li><strong>Potenciais empregadores:</strong> Informacoes relevantes para oportunidades de trabalho, sempre com seu consentimento.</li>
                     </ul>
                 </div>
 
                 <div class="policy-section">
-                    <h2>5. Proteção de Dados</h2>
-                    <p>Implementamos medidas de segurança técnicas e organizacionais para proteger suas informações pessoais. No entanto, nenhum método de transmissão pela internet ou armazenamento eletrônico é 100% seguro, e não podemos garantir a segurança absoluta dos seus dados.</p>
+                    <h2>5. Protecao de Dados</h2>
+                    <p>Implementamos medidas de seguranca tecnicas e organizacionais para proteger suas informacoes pessoais. No entanto, nenhum metodo de transmissao pela internet ou armazenamento eletronico e 100% seguro, e nao podemos garantir a seguranca absoluta dos seus dados.</p>
                 </div>
 
                 <div class="policy-section">
                     <h2>6. Seus Direitos</h2>
-                    <p>De acordo com a Lei Geral de Proteção de Dados (LGPD), você tem os seguintes direitos:</p>
+                    <p>De acordo com a Lei Geral de Protecao de Dados (LGPD), voce tem os seguintes direitos:</p>
                     <ul>
-                        <li>Acesso às suas informações pessoais;</li>
-                        <li>Correção de informações imprecisas;</li>
-                        <li>Exclusão de suas informações;</li>
-                        <li>Restrição ou objeção ao processamento de suas informações;</li>
+                        <li>Acesso as suas informacoes pessoais;</li>
+                        <li>Correcao de informacoes imprecisas;</li>
+                        <li>Exclusao de suas informacoes;</li>
+                        <li>Restricao ou objecao ao processamento de suas informacoes;</li>
                         <li>Portabilidade de dados;</li>
                         <li>Retirada de consentimento a qualquer momento.</li>
                     </ul>
-                    <p>Para exercer esses direitos, entre em contato conosco através do e-mail contato@vnxfiber.com.br.</p>
+                    <p>Para exercer esses direitos, entre em contato conosco atraves do e-mail contato@vnxfiber.com.br.</p>
                 </div>
 
                 <div class="policy-section">
                     <h2>7. Cookies e Tecnologias Semelhantes</h2>
-                    <p>Utilizamos cookies e tecnologias semelhantes para melhorar sua experiência em nosso site, entender como os usuários interagem com ele e personalizar conteúdo. Você pode configurar seu navegador para recusar todos os cookies ou indicar quando um cookie está sendo enviado.</p>
+                    <p>Utilizamos cookies e tecnologias semelhantes para melhorar sua experiencia em nosso site, entender como os usuarios interagem com ele e personalizar conteudo. Voce pode configurar seu navegador para recusar todos os cookies ou indicar quando um cookie esta sendo enviado.</p>
                 </div>
 
                 <div class="policy-section">
-                    <h2>8. Alterações na Política de Privacidade</h2>
-                    <p>Podemos atualizar esta Política de Privacidade periodicamente. A versão mais recente estará sempre disponível em nosso site, com a data da última atualização indicada no topo da página. Recomendamos que você revise regularmente esta política para se manter informado sobre como estamos protegendo suas informações.</p>
+                    <h2>8. Alteracoes na Politica de Privacidade</h2>
+                    <p>Podemos atualizar esta Politica de Privacidade periodicamente. A versao mais recente estara sempre disponivel em nosso site, com a data da ultima atualizacao indicada no topo da pagina. Recomendamos que voce revise regularmente esta politica para se manter informado sobre como estamos protegendo suas informacoes.</p>
                 </div>
 
                 <div class="policy-section">
                     <h2>9. Contato</h2>
-                    <p>Se você tiver dúvidas, preocupações ou solicitações relacionadas à nossa Política de Privacidade ou ao tratamento dos seus dados pessoais, entre em contato conosco pelo e-mail contato@vnxfiber.com.br ou pelo telefone (98) 99988-2215.</p>
+                    <p>Se voce tiver duvidas, preocupacoes ou solicitacoes relacionadas a nossa Politica de Privacidade ou ao tratamento dos seus dados pessoais, entre em contato conosco pelo e-mail contato@vnxfiber.com.br ou pelo telefone (98) 99988-2215.</p>
                 </div>
             </div>
         </section>
@@ -180,110 +213,62 @@
                     </div>
                 </div>
                 <div class="footer-nav">
-                    <h3>Links Úteis</h3>
+                    <h3>Links Uteis</h3>
                     <ul>
                         <li><a href="index.html#sobre">Sobre</a></li>
                         <li><a href="index.html#oportunidades">Oportunidades</a></li>
                         <li><a href="index.html#cadastro">Cadastro</a></li>
+                        <li><a href="terms-of-use.html">Termos de Uso</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-legal">
                 <p>© 2024 VNX FIBER TELECOM. Todos os direitos reservados.</p>
-                <p><a href="privacy-policy.html">Política de Privacidade</a> | <a href="terms-of-use.html">Termos de Uso</a></p>
+                <p><a href="privacy-policy.html">Politica de Privacidade</a> | <a href="terms-of-use.html">Termos de Uso</a></p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
     <script>
-        // Script adicional para resolver problemas específicos da página de política
+        // Script especifico para esta pagina
         document.addEventListener('DOMContentLoaded', function() {
-            // Força a visibilidade do conteúdo
-            document.body.style.opacity = '1';
-            document.body.style.visibility = 'visible';
+            // Força a visibilidade forçando direto no estilo
+            document.body.style.opacity = '1 !important';
+            document.body.style.visibility = 'visible !important';
             
-            // Garante que o conteúdo principal esteja sempre visível
-            const mainContent = document.querySelector('main');
-            if (mainContent) {
-                mainContent.style.opacity = '1';
-                mainContent.style.visibility = 'visible';
-                mainContent.style.display = 'block';
-            }
-            
-            // Garantir que o conteúdo da política esteja sempre visível
-            const policyContent = document.querySelector('.policy-content');
-            if (policyContent) {
-                policyContent.style.opacity = '1';
-                policyContent.style.visibility = 'visible';
-                policyContent.style.display = 'block';
-            }
-            
+            // Garante que o cabeçalho seja visível
             const header = document.querySelector('.header');
             if (header) {
-                // Garante que o cabeçalho está visível
                 header.classList.remove('hidden');
-                header.classList.add('policy-page-header');
-                
-                // Desativa o comportamento de scroll que esconde o cabeçalho
-                window.addEventListener('scroll', function() {
-                    header.classList.remove('hidden');
-                });
+                header.style.display = 'block';
+                header.style.visibility = 'visible';
+                header.style.opacity = '1';
             }
             
-            // Ajusta o comportamento do menu mobile
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const mobileOverlay = document.querySelector('.mobile-overlay');
-            const body = document.body;
-            
-            if (mobileMenuToggle && mobileOverlay) {
-                // Pré-inicializa o overlay para melhor desempenho
-                mobileOverlay.style.opacity = '0';
-                mobileOverlay.style.display = 'none';
-                
-                mobileMenuToggle.addEventListener('click', function() {
-                    body.classList.toggle('mobile-menu-open');
-                    
-                    // Força a exibição do overlay quando o menu é aberto
-                    if (body.classList.contains('mobile-menu-open')) {
-                        mobileOverlay.style.display = 'block';
-                        // Pequeno atraso para permitir que o display: block seja aplicado antes da opacidade
-                        setTimeout(function() {
-                            mobileOverlay.style.opacity = '1';
-                        }, 10);
-                    } else {
-                        mobileOverlay.style.opacity = '0';
-                        // Pequeno atraso antes de esconder o overlay
-                        setTimeout(function() {
-                            mobileOverlay.style.display = 'none';
-                        }, 300);
-                    }
-                });
-                
-                mobileOverlay.addEventListener('click', function() {
-                    body.classList.remove('mobile-menu-open');
-                    mobileOverlay.style.opacity = '0';
-                    
-                    // Pequeno atraso antes de esconder o overlay
-                    setTimeout(function() {
-                        mobileOverlay.style.display = 'none';
-                    }, 300);
-                });
-                
-                // Fechar menu ao clicar em links
-                document.querySelectorAll('.nav a').forEach(link => {
-                    link.addEventListener('click', function() {
-                        body.classList.remove('mobile-menu-open');
-                        mobileOverlay.style.opacity = '0';
-                        
-                        // Pequeno atraso antes de esconder o overlay
-                        setTimeout(function() {
-                            mobileOverlay.style.display = 'none';
-                        }, 300);
-                    });
-                });
+            // Garante que o conteúdo principal seja visível
+            const mainContent = document.querySelector('main');
+            if (mainContent) {
+                mainContent.style.display = 'block !important';
+                mainContent.style.visibility = 'visible !important';
+                mainContent.style.opacity = '1 !important';
             }
+            
+            // Força todos os elementos de conteúdo a serem visíveis
+            const policyContent = document.querySelector('.policy-content');
+            if (policyContent) {
+                policyContent.style.display = 'block';
+                policyContent.style.visibility = 'visible';
+                policyContent.style.opacity = '1';
+            }
+            
+            // Desativa qualquer comportamento de scroll que possa esconder o cabeçalho
+            window.addEventListener('scroll', function() {
+                if (header) header.classList.remove('hidden');
+            });
+            
+            console.log('Script específico da página de política carregado');
         });
     </script>
 </body>
-</html> 
+</html>
