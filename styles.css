@@ -1001,59 +1001,113 @@ select:focus {
     .nav {
         position: fixed;
         top: 0;
-        left: -100%;
+        right: -100%;
         width: 80%;
-        max-width: 300px;
+        max-width: 320px;
         height: 100vh;
         background-color: var(--white);
-        flex-direction: column;
-        padding: 80px 2rem 2rem;
-        transition: left 0.3s ease;
+        padding: 80px 20px 30px;
+        transition: all 0.4s ease;
         z-index: 100;
-        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
     }
     
     .mobile-menu-open .nav {
-        left: 0;
+        right: 0;
     }
     
     .nav ul {
-        margin-left: 1rem;
         flex-direction: column;
-        align-items: flex-start;
         width: 100%;
+        margin-bottom: 20px;
     }
     
     .nav li {
-        margin: 0.75rem 0;
+        margin: 0;
+        padding: 0;
         width: 100%;
-        text-align: left;
     }
     
     .nav ul li a {
+        padding: 15px 0;
         display: block;
-        padding: 0.5rem 0;
-        font-size: 1.1rem;
-        color: var(--dark-color);
+        width: 100%;
+        font-size: 18px;
+        text-align: left;
     }
     
     .nav ul li a:after {
         display: none;
     }
     
-    /* Modificação para mostrar o botão no menu mobile */
-    .btn-primary {
-        display: inline-block;
-        width: 100%;
-        margin-top: 1rem;
-        text-align: center;
+    /* Remove o botão de cadastro no meio da página */
+    .policy-page-header .btn-primary,
+    .header .btn-primary,
+    .header #botaoCadastro,
+    header .btn-primary {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        position: absolute !important;
+        z-index: -1 !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        pointer-events: none !important;
     }
     
-    /* Botão específico para páginas de política e termos */
-    .nav .btn-primary {
-        display: inline-block;
-        width: 100%;
-        margin-top: 1.5rem;
+    .policy-page-header {
+        transform: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        position: fixed !important;
+        animation: none !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* Ajuste para garantir espaço para o header fixo nas páginas de política */
+    main:has(.policy-content) {
+        margin-top: 80px !important;
+        padding-top: 20px !important;
+    }
+    
+    .policy-content {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+        padding-top: 10px !important;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+    .header .container {
+        padding: 0 15px;
+    }
+    
+    .nav ul li {
+        margin: 0 10px;
+    }
+    
+    .nav ul li a {
+        font-size: 14px;
+    }
+    
+    .logo h1 {
+        font-size: 20px;
+    }
+    
+    .logo .telecom {
+        font-size: 12px;
+    }
+    
+    .btn-primary {
+        padding: 8px 12px;
+        font-size: 14px;
     }
 }
 
@@ -1355,4 +1409,35 @@ select:focus {
     .policy-page-header .mobile-overlay {
         z-index: 998;
     }
+}
+
+/* Garantindo visibilidade das páginas de política e termos */
+body:has(main .policy-content) {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+.policy-page-header {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    transform: none !important;
+}
+
+main:has(.policy-content) {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin-top: 80px !important;
+}
+
+.policy-content {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 } 
