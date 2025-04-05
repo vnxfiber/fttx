@@ -361,6 +361,7 @@ section {
     transition: all 0.3s ease;
 }
 
+/* Mobile overlay */
 .mobile-overlay {
     display: none;
     position: fixed;
@@ -374,9 +375,22 @@ section {
     transition: opacity 0.3s ease;
 }
 
+/* Estilos específicos para o overlay em páginas de política/termos - garante aparecimento imediato */
+.policy-page-header + .mobile-overlay {
+    transition: opacity 0.1s ease !important;
+}
+
+/* Quando o menu mobile está aberto */
 .mobile-menu-open .mobile-overlay {
     display: block;
     opacity: 1;
+}
+
+/* Estilos específicos para o overlay quando o menu mobile está aberto em páginas externas */
+body:has(.policy-page-header).mobile-menu-open .mobile-overlay {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .mobile-menu-open .mobile-menu-toggle span:nth-child(1) {
@@ -1261,6 +1275,9 @@ select:focus {
     background-color: var(--white);
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
 }
 
 .policy-content h1 {

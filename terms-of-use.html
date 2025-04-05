@@ -15,6 +15,20 @@
         
         main {
             margin-top: 40px !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        /* Mobile overlay específico para esta página */
+        .mobile-overlay {
+            display: none;
+            transition: opacity 0.1s linear !important;
+        }
+        
+        body.mobile-menu-open .mobile-overlay {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
         }
         
         @media (max-width: 768px) {
@@ -23,6 +37,20 @@
             }
             main {
                 margin-top: 20px !important;
+                display: block !important;
+            }
+            .policy-content {
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+            /* Estilo específico para o overlay no mobile */
+            .mobile-overlay {
+                top: 0 !important;
+                left: 0 !important;
+                position: fixed !important;
+                width: 100% !important;
+                height: 100% !important;
+                z-index: 99 !important;
             }
         }
     </style>
@@ -168,11 +196,36 @@
     <script>
         // Script adicional para resolver problemas específicos da página de termos
         document.addEventListener('DOMContentLoaded', function() {
+            // Força a visibilidade do conteúdo
+            document.body.style.opacity = '1';
+            document.body.style.visibility = 'visible';
+            
+            // Garante que o conteúdo principal esteja sempre visível
+            const mainContent = document.querySelector('main');
+            if (mainContent) {
+                mainContent.style.opacity = '1';
+                mainContent.style.visibility = 'visible';
+                mainContent.style.display = 'block';
+            }
+            
+            // Garantir que o conteúdo da política esteja sempre visível
+            const policyContent = document.querySelector('.policy-content');
+            if (policyContent) {
+                policyContent.style.opacity = '1';
+                policyContent.style.visibility = 'visible';
+                policyContent.style.display = 'block';
+            }
+            
             const header = document.querySelector('.header');
             if (header) {
                 // Garante que o cabeçalho está visível
                 header.classList.remove('hidden');
                 header.classList.add('policy-page-header');
+                
+                // Desativa o comportamento de scroll que esconde o cabeçalho
+                window.addEventListener('scroll', function() {
+                    header.classList.remove('hidden');
+                });
             }
             
             // Ajusta o comportamento do menu mobile
@@ -181,18 +234,49 @@
             const body = document.body;
             
             if (mobileMenuToggle && mobileOverlay) {
+                // Pré-inicializa o overlay para melhor desempenho
+                mobileOverlay.style.opacity = '0';
+                mobileOverlay.style.display = 'none';
+                
                 mobileMenuToggle.addEventListener('click', function() {
                     body.classList.toggle('mobile-menu-open');
+                    
+                    // Força a exibição do overlay quando o menu é aberto
+                    if (body.classList.contains('mobile-menu-open')) {
+                        mobileOverlay.style.display = 'block';
+                        // Pequeno atraso para permitir que o display: block seja aplicado antes da opacidade
+                        setTimeout(function() {
+                            mobileOverlay.style.opacity = '1';
+                        }, 10);
+                    } else {
+                        mobileOverlay.style.opacity = '0';
+                        // Pequeno atraso antes de esconder o overlay
+                        setTimeout(function() {
+                            mobileOverlay.style.display = 'none';
+                        }, 300);
+                    }
                 });
                 
                 mobileOverlay.addEventListener('click', function() {
                     body.classList.remove('mobile-menu-open');
+                    mobileOverlay.style.opacity = '0';
+                    
+                    // Pequeno atraso antes de esconder o overlay
+                    setTimeout(function() {
+                        mobileOverlay.style.display = 'none';
+                    }, 300);
                 });
                 
                 // Fechar menu ao clicar em links
                 document.querySelectorAll('.nav a').forEach(link => {
                     link.addEventListener('click', function() {
                         body.classList.remove('mobile-menu-open');
+                        mobileOverlay.style.opacity = '0';
+                        
+                        // Pequeno atraso antes de esconder o overlay
+                        setTimeout(function() {
+                            mobileOverlay.style.display = 'none';
+                        }, 300);
                     });
                 });
             }

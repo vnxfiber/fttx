@@ -27,13 +27,37 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Verifica se estamos em uma página externa (política de privacidade ou termos de uso)
     const isPolicyPage = window.location.pathname.includes('privacy-policy.html') || 
-                         window.location.pathname.includes('terms-of-use.html');
+                          window.location.pathname.includes('terms-of-use.html');
     
     // Se estamos em uma página de política, garantimos que o cabeçalho seja sempre visível
     if (isPolicyPage) {
+        // Aplicar estilos imediatamente para evitar problemas de exibição
+        document.body.style.opacity = '1';
+        document.body.style.visibility = 'visible';
+        
+        // Garante que o conteúdo principal esteja sempre visível
+        const mainContent = document.querySelector('main');
+        if (mainContent) {
+            mainContent.style.opacity = '1';
+            mainContent.style.visibility = 'visible';
+            mainContent.style.display = 'block';
+        }
+        
+        // Garantir que o cabeçalho esteja sempre visível
         header.classList.remove('hidden');
-        // Aqui adicionamos uma classe para evitar transições nas páginas de política
         header.classList.add('policy-page-header');
+        
+        // Garantir que o conteúdo da política esteja sempre visível
+        const policyContent = document.querySelector('.policy-content');
+        if (policyContent) {
+            policyContent.style.opacity = '1';
+            policyContent.style.visibility = 'visible';
+        }
+        
+        // Desativar qualquer comportamento de scroll que possa esconder o conteúdo
+        window.addEventListener('scroll', function() {
+            header.classList.remove('hidden');
+        });
     } else {
         // Header scroll behavior - apenas na página inicial
         window.addEventListener('scroll', function() {
