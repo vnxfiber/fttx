@@ -1041,20 +1041,20 @@ select:focus {
         display: none;
     }
     
-    /* Remove o botão de cadastro no meio da página */
-    .policy-page-header .btn-primary,
-    .header .btn-primary,
-    .header #botaoCadastro,
-    header .btn-primary {
+    /* Esconder botão de cadastro no mobile */
+    #botaoCadastro {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
         position: absolute !important;
-        z-index: -1 !important;
+        z-index: -999 !important;
         width: 0 !important;
         height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
         overflow: hidden !important;
         pointer-events: none !important;
+        clip: rect(0, 0, 0, 0) !important;
     }
     
     .policy-page-header {
