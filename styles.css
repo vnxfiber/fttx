@@ -1057,6 +1057,17 @@ select:focus {
         clip: rect(0, 0, 0, 0) !important;
     }
     
+    /* Estilo para o botão de cadastro nas páginas externas (policy pages) */
+    .policy-page-header .nav .btn-primary {
+        position: absolute;
+        bottom: 30px;
+        left: 20px;
+        width: calc(100% - 40px);
+        margin-top: 20px;
+        text-align: center;
+        display: block;
+    }
+    
     .policy-page-header {
         transform: none !important;
         transition: none !important;
